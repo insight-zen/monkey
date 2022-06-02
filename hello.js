@@ -15,3 +15,5 @@ const iC = {
     return document.querySelector(spec)
   }
 }
+
+window.iC
