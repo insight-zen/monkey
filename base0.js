@@ -1,4 +1,13 @@
 
+// ==UserScript==
+// @name        Basic Utilities
+// @namespace   Violentmonkey Scripts
+// @match       *://*/*
+// @grant       none
+// @version     1.0
+// @author      -
+// @description 6/2/2022, 9:07:42 AM
+// ==/UserScript==
 
 const D = {
   // https://javascript.info/blob
