@@ -1,21 +1,29 @@
 :root{
+  --fsize: 16px;
   --c_prim: 236deg;
-  --bg_color: rgb(194, 194, 194);
+  --bg_color: hsla(0, 0%, 100%);
   --fg_color: #222;
   --header_color: hsl(var(--c_prim) 77% 26% / 90%);
   --brd_color: rgba(212, 212, 212, 0.3);
 }
 
+html {
+  font-size: var(--fsize);
+}
+
 body{
   background-color: var(--bg_color);
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-  font-size: 14px;
   line-height: 1.5em;
+  padding: 0;
+  margin: 0;
 }
 
 header {
-  background-color: hsl(var(--c_prim) 77% 26% / 90%);
+  background: linear-gradient(90deg, hsla(25.2, 90.4%, 55.1%, 0.9), hsla(47.8, 95%, 68.6%, 0.9));
   color: #fff;
+  font-size: 1.2rem;
+  padding: 0.5em 0.25em;
 }
 
 footer {
