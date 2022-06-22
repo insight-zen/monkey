@@ -109,8 +109,15 @@ const D = {
   },
 
   // https://github.com/WebDevSimplified/js-util-functions/blob/main/domUtils/domUtils.js
+  // When text: "foo" or text: /foo/ is used, searches textConten
+  //  - returns first element matching that pattern based on textContent
   qs(pattern, {parent = document, ...opts} = {}){
-    return parent.querySelector(pattern)
+    if (opts.text){
+      const elements = D.qsa(pattern, {parent: parent})
+      return elements.find(e => e.textContent.match(opts.text))
+    } else {
+      return parent.querySelector(pattern)
+    }
   },
 
   // filter: provide a function that takes in the node element and return true/false
