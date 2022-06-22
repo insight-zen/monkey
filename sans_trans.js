@@ -610,5 +610,5 @@ const SansTrans = {
 
 SansTrans.init()
 
-export default SansTrans
+// export default SansTrans
 window.S = SansTrans
