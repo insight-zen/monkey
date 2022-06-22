@@ -1,5 +1,6 @@
-// Identical to gita/npm/lib
-// For Monkey, Window.S is added to make this available in the document
+// Monkey Version: Identical to gita/npm/lib
+//  * window.S is added to make this available in the document
+//  * export removed
 
 const SansTrans = {
   defaults: {
