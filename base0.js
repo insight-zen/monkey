@@ -133,6 +133,53 @@ const D = {
     return rv
   },
 
+
+  // create Element
+  ce(type, options = {}) {
+    const element = document.createElement(type)
+    Object.entries(options).forEach(([key, value]) => {
+      if (key === "class") {
+        element.classList.add(value)
+        return
+      }
+
+      if (key === "data") {
+        Object.entries(value).forEach(([dKey, dValue]) => {
+          element.dataset[`data-${dKey}`] = dValue
+        })
+        return
+      }
+
+      if (key === "text") {
+        element.textContent = value
+        return
+      }
+
+      if (key == "html") {
+        element.innerHTML = value
+        return
+      }
+
+      if (key == "children") {
+        value.forEach(ce => element.appendChild(ce))
+      }
+
+      if (key == "event") {
+        element.addEventListener(value.type || "click", value.callback || value)
+        return
+      }
+
+      if (key == "parent") {
+        return
+      }
+      element.setAttribute(key, value)
+    })
+
+    if (options.parent) options.parent.appendChild(element)
+    return element
+  },
+
+
   // Add Global Event Listener that executes only on matching elements
   agel(type, selector, callback, options, parent = document) {
     parent.addEventListener(
