@@ -143,6 +143,13 @@ const D = {
         return
       }
 
+      if (key === "style") {
+        Object.entries(value).forEach(([sk, svalue]) => {
+          element.style[sk] = svalue
+        })
+        return
+      }
+
       if (key === "data") {
         Object.entries(value).forEach(([dKey, dValue]) => {
           element.dataset[`data-${dKey}`] = dValue
