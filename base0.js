@@ -139,7 +139,7 @@ const D = {
     const element = document.createElement(type)
     Object.entries(options).forEach(([key, value]) => {
       if (key === "class") {
-        element.classList.add(value)
+        value.split(/[\s,]+/).forEach(c => element.classList.add(c.trim()))
         return
       }
 
