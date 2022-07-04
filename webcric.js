@@ -75,6 +75,12 @@ function unAnnoy(event){
     vidFrame.replaceWith(vidFrame.cloneNode(true))
   }
 
+  console.log(` * Removing ad div`)
+  const logoDiv = D.qs("body div.container div.row div.col-lg-12 div")
+  if (logoDiv) logoDiv.remove()
+  console.log(` * Removing logo div`)
+  D.qsa("div.container div.row div.container div.col-lg-12", {delete: true})
+
   console.log(`%c -- Exiting unAnnoy pass: ${passCounter}, ${window.location}, top: ${topFrame()}--`, "color: #fff; background-color: #419641")  // console.log("Firing from the button")
   passCounter += 1
 }
