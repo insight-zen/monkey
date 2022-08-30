@@ -6,7 +6,7 @@
 // @grant       none
 // @version     1.1
 // @author      -
-// @description Jun 10 2022, 9:07:42 AM Added C, qsa extended
+// @description Aug 29 2022. Replace added, Added C, qsa extended
 // ==/UserScript==
 
 const C = {
@@ -189,8 +189,7 @@ const D = {
   // Replace the given element with itself. children are copied, eventlisteners are not
   replace(e){
     e.replaceWith(e.cloneNode(true))
-  }
-
+  },
 
   // Add Global Event Listener that executes only on matching elements
   agel(type, selector, callback, options, parent = document) {
