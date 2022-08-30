@@ -186,6 +186,11 @@ const D = {
     return element
   },
 
+  // Replace the given element with itself. children are copied, eventlisteners are not
+  replace(e){
+    e.replaceWith(e.cloneNode(true))
+  }
+
 
   // Add Global Event Listener that executes only on matching elements
   agel(type, selector, callback, options, parent = document) {
