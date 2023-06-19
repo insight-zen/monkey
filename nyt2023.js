@@ -83,6 +83,7 @@ const tw = {
       []
     );
     elements.forEach((n) => n.remove());
+    document.getElementById("standalone-footer")?.remove();
   },
 
   removeScrollModal() {
