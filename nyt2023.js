@@ -3,20 +3,57 @@
 // @namespace   Violentmonkey Scripts
 // @match       *://*.nytimes.com/*
 // @grant       none
-// @version     1.2
+// @version     1.3
 // @author      -
-// @description 2023 version of NYT
+// @description 2023 version of NYT with iCss added
 // ==/UserScript==
 
 function unAnnoyBtn(cb, opts = {}) {
   const sBtn =
-    "<button id='b101' style='font-size: 11px; cursor: pointer; position: fixed; padding: 0.5em; background-color: #c13838; color: #dedede; top: 14px; left: 50px; border: none; border-radius: 4px; z-index: 1000;'>UnAnnoy</button>";
+    "<button id='b101' style='font-size: 11px; cursor: pointer; position: fixed; padding: 0.5em; background-color: #c13838; color: #dedede; top: 32px; left: 14px; border: none; border-radius: 4px; z-index: 1000;'>UnAnnoy</button>";
   document.querySelector("body").insertAdjacentHTML("afterbegin", sBtn);
   document
     .querySelector("body")
     .querySelector("#b101")
     .addEventListener("click", cb);
 }
+
+const iCss = {
+  // Extract all rules from all stylesheets.
+  // filtSpec if specified is used to filter returned cssStyleRule
+  // return when width is specified as 100% => (r) => r.style.width === "100%"
+  // With filter specified, will return selectorText (css Class or ID)
+  allRules(filtSpec) {
+    const rv = [...document.styleSheets].reduce((acc, s) => {
+      let tmp = [];
+      // This guards against error for font-only stylesheets that do not have cssRules
+      try {
+        tmp = s.cssRules;
+      } catch {}
+      acc = [...acc, ...tmp];
+      return acc;
+    }, []);
+    if (!filtSpec) return rv;
+    return rv.filter(filtSpec).map((c) => c.selectorText);
+  },
+
+  // Can be passed to allRules to filter height: 100%, width: 100%, position: absolute
+  abs100: (r) =>
+    r.style?.width === "100%" &&
+    r.style?.height === "100%" &&
+    r.style?.position === "absolute"
+      ? true
+      : false,
+
+  // abs100 + background
+  abs100backgr: (r) =>
+    r.style?.width === "100%" &&
+    r.style?.height === "100%" &&
+    r.style?.position === "absolute" &&
+    r.style?.background.match(/linear\-gradient/)
+      ? true
+      : false,
+};
 
 const uA = {
   clearLocalStorage() {
@@ -63,6 +100,9 @@ const uA = {
     [...e.classList].forEach((cssClass) => e.classList.remove(cssClass));
   },
 
+  // window.getComputedStyle($0).position === "absolute"
+  //
+
   // overflow blocking elements
   clearFirstOverflow() {
     const firstOf = uA.overflowHidden()[0];
@@ -71,6 +111,7 @@ const uA = {
   },
 };
 
+window.iCss = iCss;
 window.uA = uA;
 
 const tw = {
@@ -84,6 +125,12 @@ const tw = {
     );
     elements.forEach((n) => n.remove());
     document.getElementById("standalone-footer")?.remove();
+    [...document.querySelectorAll("a[href='#site-content']")].forEach((e) =>
+      e.remove()
+    );
+    [...document.querySelectorAll(iCss.allRules(iCss.abs100backgr))].forEach(
+      (e) => e.remove()
+    );
   },
 
   removeScrollModal() {
