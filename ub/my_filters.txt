@@ -1,0 +1,18 @@
+reddit.com##+js(set, fooBar, "1234")
+
+! 2023-09-21 https://www.theguardian.com
+www.theguardian.com##gu-island:nth-of-type(2)
+www.theguardian.com##.dcr-1juc3xi
+
+theguardian.*##.dcr-g0itzh > .dcr-15t9kli > .dcr-1atljbz > .dcr-eubdc:style(background-color: blue !important)
+
+! https://github.com/gorhill/uBlock/wiki/Static-filter-syntax#subjectremove
+theguardian.com##header.dcr-yvt6mp:remove()
+theguardian.com##.gu-overlay:remove()
+
+theguardian.com##+js(set-session-storage-item, gu.alreadyVisited, $remove)
+
+!  webcric  - https://github.com/gorhill/uBlock/wiki/Static-filter-syntax#subjectremove
+ucplay2.*###video_ads_overdiv:remove()
+
+www.google.*##+js(trusted-set-cookie, SOCS, CAESHAgBEhJnd3NfMjAyMzA2MTItMF9SQzIaAmZpIAEaBgiAzK6kBg, 1year)
