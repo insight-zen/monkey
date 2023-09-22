@@ -1,0 +1,17 @@
+no-large-media: behind-the-scene false
+* facebook.com * block
+* fbcdn.net * block
+* fonts.googleapis.com * block
+* ggpht.com * block
+* google.com * block
+* gstatic.com * block
+* jnn-pa.googleapis.com * block
+* ytimg.com * block
+behind-the-scene * * noop
+behind-the-scene * 1p-script noop
+behind-the-scene * 3p noop
+behind-the-scene * 3p-frame noop
+behind-the-scene * 3p-script noop
+behind-the-scene * image noop
+behind-the-scene * inline-script noop
+www.youtube.com www.youtube.com * noop
