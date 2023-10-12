@@ -1,3 +1,5 @@
+! dl = await indexedDB.databases(); [...dl].forEach(d => indexedDB.deleteDatabase(d)); localStorage.clear(); sessionStorage.clear();
+
 reddit.com##+js(set, fooBar, "1234")
 
 ! 2023-09-21 https://www.theguardian.com
